@@ -1,0 +1,62 @@
+﻿@page "/employeerecords"
+@inherits EmployeeDataModel
+
+<h1>Employee Data</h1>
+<p>CRUD operation using Blazor and Google Cloud FireStore</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <a href="/employee/add" class="btn btn-primary" role="button">
+            <i class="fa fa-user-plus"></i>
+            Add Employee
+        </a>
+    </div>
+    <div>
+        <input type="text" class="form-control" placeholder="Search Employee By Name" @bind="SearchString">
+        <div class="input-group-append">
+            <button class="btn btn-info" @onclick="SearchEmployee">
+                <i class="fade fa-serach"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<br />
+@if (empList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Designation</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in empList)
+            {
+                <tr>
+                    <td>@emp.EmployeeName</td>
+                    <td>@emp.Gender</td>
+                    <td>@emp.Designation</td>
+                    <td>@emp.CityName</td>
+                    <td>
+                        <a href="/employee/edit/@emp.EmployeeId" class="btn btn-outline-dark" role="button">
+                            <i class="fa fa-pencil.square-o"></i>
+                            Edit
+                        </a>
+                        <a href="/employee/delete/@emp.EmployeeId" class="btn btn-outline-danger" role="button">
+                            <i class="fa fa-trash-o"></i>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

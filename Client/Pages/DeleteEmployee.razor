@@ -1,0 +1,34 @@
+﻿@page "/employee/delete/{empID}"
+@inherits DeleteEmployeeModel
+
+<h1>@Title Employee</h1>
+<hr />
+
+<EditForm Model="@emp" OnValidSubmit="DeleteEmployee">
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <label class="control-label col-md-12">Name</label>
+        <div class="col-md-4">
+            <input class="form-control" @bind="emp.EmployeeName" disabled />
+        </div>
+        <ValidationMessage For="@( ()=>emp.EmployeeName)" />
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">Gender</label>
+        <div class="col-md-4">
+            <input class="form-control" @bind="emp.Gender" disabled />
+        </div>
+        <ValidationMessage For="@( ()=>emp.Gender)" />
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">City</label>
+        <div class="col-md-4">
+            <input class="form-control" @bind="emp.CityName" disabled />
+        </div>
+        <ValidationMessage For="@( ()=>emp.CityName)" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Delete Confirmation</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>
